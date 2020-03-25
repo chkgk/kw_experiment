@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Example Situation (Continued)
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .italics {
+            font-style: italics;
+        }
+        thead {
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        For example, suppose you thought that taking the wallet was
+        <span class="italics">very socially inappropriate</span>, asking others nearby
+        if the wallet belongs to them was <span class="italics">somewhat socially appropriate</span>, leaving the
+        wallet where it is was <span class="italics">somewhat socially inappropriate</span>, and giving the wallet to
+        the shop manager was <span class="italics">very socially appropriate</span>. Then you would indicate your
+        responses as follows:
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Individual A's choice</td>
+                <td>very socially appropriate</td>
+                <td>somewhat socially inappropriate</td>
+                <td>somewhat socially appropriate</td>
+                <td>very socially appropriate</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Take the wallet</td>
+                <td><input type="radio" name="example_wallet" value="-1" checked></td>
+                <td><input type="radio" name="example_wallet" value="-0.33" disabled></td>
+                <td><input type="radio" name="example_wallet" value="0.33" disabled></td>
+                <td><input type="radio" name="example_wallet" value="1" disabled></td>
+            </tr>
+            <tr>
+                <td>Ask other nearby if the wallet belongs to them</td>
+                <td><input type="radio" name="example_ask" value="-1" disabled></td>
+                <td><input type="radio" name="example_ask" value="-0.33" disabled></td>
+                <td><input type="radio" name="example_ask" value="0.33" checked></td>
+                <td><input type="radio" name="example_ask" value="1" disabled></td>
+            </tr>
+            <tr>
+                <td>Leave the wallet where it is</td>
+                <td><input type="radio" name="example_leave" value="-1" disabled></td>
+                <td><input type="radio" name="example_leave" value="-0.33" checked></td>
+                <td><input type="radio" name="example_leave" value="0.33" disabled></td>
+                <td><input type="radio" name="example_leave" value="1" disabled></td>
+            </tr>
+            <tr>
+                <td>Give the wallet to the shop manager</td>
+                <td><input type="radio" name="example_manager" value="-1" disabled></td>
+                <td><input type="radio" name="example_manager" value="-0.33" disabled></td>
+                <td><input type="radio" name="example_manager" value="0.33" disabled></td>
+                <td><input type="radio" name="example_manager" value="1" checked></td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Final Instructions
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .code {
+            font-family: monospace;
+            font-size: 1.2em;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Thank you for your participation.
+    </p>
+    <p>
+        The computer has randomly selected a situation and one of the possible choices in this situation.
+        As the experiment is still running, we cannot reveal the random selection at this point. If your response for
+        the selected combination of situation and choice was the most frequent response among all participants, you will
+        receove am additional {{ Constants.bonus }} for the experiment. Otherwise, you will only receive the
+        {{ participation_fee }} participation fee.
+    </p>
+    <p>
+        Please enter the following code on MTurk: <span class="code">KWExperimentMarch2020</span>
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -10,10 +10,10 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Christian König gen. Kersting'
 
 doc = """
-Your app description
+Krupka & Weber (2013) Task.
 """
 
 
@@ -21,6 +21,8 @@ class Constants(BaseConstants):
     name_in_url = 'kwtask'
     players_per_group = None
     num_rounds = 1
+
+    bonus = c(0.5)
 
 
 class Subsession(BaseSubsession):

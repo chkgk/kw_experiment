@@ -27,17 +27,18 @@ SESSION_CONFIG_DEFAULTS = dict(
                 'QualificationTypeId': '3DUIEQIYL66N062LWCCQO5MIE7TY24',
                 'Comparator': 'DoesNotExist'
             }
-        ]
+        ],
         grant_qualification_id='3DUIEQIYL66N062LWCCQO5MIE7TY24', # to prevent retakes
     )
 )
 
 SESSION_CONFIGS = [
     dict(
-       name='kwtask',
-       display_name="Krupka Weber Task",
-       num_demo_participants=2,
-       app_sequence=['kwtask']
+        name='kwtask',
+        display_name="Krupka Weber Task",
+        num_demo_participants=2,
+        app_sequence=['kwtask'],
+        participation_fee=0.50
     ),
 ]
 

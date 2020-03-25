@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instructions 1
+{% endblock %}
+
+{% block content %}
+    <p>
+        On the following screens, you will read descriptions of a series of situations. These descriptions correspond to
+        situations in which one person, "Individual A", must make a decision. For each situation, you will be given a
+        description of the decision faced by Individual A. This description will include several possible choices
+        available to Individual A.
+    </p>
+    <p>
+        After you read the description of the decision, you will be asked to evaluate the different possible choices
+        available to Individual A and to decide, for each of the possible actions, whether taking that action would be
+        "socially appropriate" and "consistent with moral or proper social behavior" or "socially inappropriate" and
+        "inconsistent with moral or proper social behavior." By socially appropriate, we mean behavior that most people
+        agree is the "correct" or "ethical" thing to do. Another way to think about what we mean is that if Individual
+        A were to select a socially inappropriate choice, then someone else might be angry at Individual A for doing so.
+    </p>
+    <p>
+        In each of your responses, we would like you to answer as truthfully as possible, based on your opinions of
+        what constitutes socially appropriate or socially inappropriate behavior.
+    </p>
+    <p>
+        To give you an idea of how the experiment will proceed, we will go through an example and show you how you will
+        indicate your responses. On the next screen you will see an example of a situation.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

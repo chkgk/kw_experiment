@@ -3,17 +3,36 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
+class Instructions1(Page):
     pass
 
 
-class ResultsWaitPage(WaitPage):
-    def after_all_players_arrive(self):
-        pass
-
-
-class Results(Page):
+class ExampleSituation(Page):
     pass
 
 
-page_sequence = [MyPage, ResultsWaitPage, Results]
+class ExampleSituationCont(Page):
+    pass
+
+
+class FinalInstructions(Page):
+    def vars_for_template(self) -> dict:
+        return {
+            'participation_fee': self.session.config['participation_fee']
+        }
+
+
+class LastPage(Page):
+    def vars_for_template(self) -> dict:
+        return {
+            'participation_fee': self.session.config['participation_fee']
+        }
+
+
+page_sequence = [
+    Instructions1,
+    ExampleSituation,
+    ExampleSituationCont,
+    FinalInstructions,
+    LastPage
+]
