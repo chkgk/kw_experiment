@@ -74,7 +74,7 @@ LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+USE_POINTS = False
 
 ROOMS = []
 
@@ -88,3 +88,5 @@ SECRET_KEY = 'jq6f)a2r1ql&pdq=ac2!*vcxawb$thayb03q3z@6f!!c31g1_o'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
+
+ROOT_URLCONF = 'kwtask.urls'

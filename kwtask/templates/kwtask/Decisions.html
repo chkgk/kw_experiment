@@ -12,7 +12,7 @@
 {% block content %}
 
     <p>
-        Suppose that Individual A is randomly paired with another person, Individual B in an experiment. The pairing
+        Suppose that Individual A is randomly paired with another person, Individual B, in an experiment. The pairing
         is anonymous, meaning that neither individual will ever know the identity of the other individual with whom
         he or she is paired.
     </p>
@@ -34,7 +34,7 @@
         Below, we will present all of Individual A's eleven possible choices one by one. For each of the choices,
         please indicate whether you believe choosing that option is very socially inappropriate, somewhat socially
         inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate your response, please
-        click the corresponding button.
+        select the corresponding button, then click next.
     </p>
 
     <h3 class="vspace">Decision</h3>
@@ -192,6 +192,10 @@
         $(".decision").hide();
         $("#decision"+decision_list[current_decision]).show();
 
+        if (treatment === "no incentives" || treatment === "never remind") {
+            $('#treatment').hide();
+        }
+
         // listener
         $('#fake_next').click(function(e) {
            show_next_decision();
@@ -203,6 +207,9 @@
             $("#form").validate();
             //console.log($("#id_decision"+decision_list[current_decision]).valid());
             if ($("#id_decision"+decision_list[current_decision]).valid()) {
+                if (treatment === "original" && current_decision === 0) {
+                    $('#treatment').fadeOut();
+                }
                 if (current_decision < decision_list.length - 2) {
                     $('#form_error_message').hide();
                     $("#decision"+decision_list[current_decision]).fadeOut(complete=function() {

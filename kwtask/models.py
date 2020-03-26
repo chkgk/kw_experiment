@@ -57,7 +57,7 @@ class Subsession(BaseSubsession):
                 'a': 0
             }
             for player in players:
-                response = player.get_response(decision) == -1
+                response = player.get_response(decision)
                 count['ia'] += (response == -1)
                 count['sia'] += (response == -0.33)
                 count['sa'] += (response == 0.33)
@@ -90,6 +90,8 @@ class Subsession(BaseSubsession):
             self.modal1_9 = modal_response
         elif decision == "0_10":
             self.modal0_10 = modal_response
+
+        self.save()
 
     def set_payoffs(self):
         for player in self.get_players():
@@ -164,7 +166,8 @@ class Player(BasePlayer):
 
     def set_payoff(self):
         if self.no_incentives:
-            self.payoff = 0
+            self.payoff = c(0)
+            self.save()
             return
 
         label_to_value = {
@@ -205,4 +208,6 @@ class Player(BasePlayer):
         if dec_map[self.selected_decision] == label_to_value[modal_map[self.selected_decision]]:
             self.payoff = Constants.bonus
         else:
-            self.payoff = 0
+            self.payoff = c(0)
+
+        self.save()

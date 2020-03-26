@@ -14,13 +14,15 @@
     <p>
         Thank you for your participation.
     </p>
-    <p>
-        The computer has randomly selected a situation and one of the possible choices in this situation.
-        As the experiment is still running, we cannot reveal the random selection at this point. If your response for
-        the selected combination of situation and choice was the most frequent response among all participants, you will
-        receive am additional {{ Constants.bonus }} for the experiment. Otherwise, you will only receive the
-        {{ participation_fee }} participation fee.
-    </p>
+    {% if not player.no_incentives %}
+        <p>
+            The computer has randomly selected one of the possible choices in the described situation.
+            As the experiment is still running, we cannot reveal the random selection at this point. If your response for
+            the selected choice was the most frequently chosen response among all participants, you will
+            receive am additional {{ Constants.bonus }} for the experiment. Otherwise, you will only receive the
+            {{ participation_fee }} participation fee.
+        </p>
+    {% endif %}
     <p>
         Please enter the following code on MTurk: <span class="code">KWExperimentMarch2020</span>
     </p>

@@ -1,6 +1,8 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
-from .models import Constants
+from .models import Constants, Player
+from otree.models import Session
+from django.shortcuts import render
 import json
 
 class Instructions1(Page):
@@ -44,8 +46,7 @@ class Decisions(Page):
             'treatment': self.player.treatment
         }
 
-
-class ResWait(WaitPage):
+class Res(WaitPage):
     def after_all_players_arrive(self):
         self.subsession.determine_modal_responses()
         self.subsession.set_payoffs()
@@ -58,12 +59,28 @@ class LastPage(Page):
         }
 
 
+# custom payment processing
+# don't include these in page_sequence
+def payments_link(request):
+    return render(request, 'kwtask/PaymentProcessing.html')
+
+def process_payments(request, session_code):
+    # get the current session by session_code
+    sessions = Session.objects.filter(code=session_code)
+
+    subsessions = sessions[0].get_subsessions()
+    subsessions[0].determine_modal_responses()
+    subsessions[0].set_payoffs()
+
+    return render(request, 'kwtask/PaymentComplete.html')
+
+
 page_sequence = [
     Instructions1,
     ExampleSituation,
     ExampleSituationCont,
     FinalInstructions,
     Decisions,
-    ResWait,
+    Res,
     LastPage
 ]
