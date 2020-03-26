@@ -6,15 +6,7 @@
 {% endblock %}
 
 {% block styles %}
-    <style type="text/css">
-        .italics {
-            font-style: italic;
-        }
-
-        thead {
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'kwtask/main.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -36,40 +28,40 @@
         <thead>
             <tr>
                 <td>Individual A's choice</td>
-                <td>very socially appropriate</td>
-                <td>somewhat socially inappropriate</td>
-                <td>somewhat socially appropriate</td>
-                <td>very socially appropriate</td>
+                <td class="italics normal-weight center w15">very socially inappropriate</td>
+                <td class="italics normal-weight center w15">somewhat socially inappropriate</td>
+                <td class="italics normal-weight center w15">somewhat socially appropriate</td>
+                <td class="italics normal-weight center w15">very socially appropriate</td>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Take the wallet</td>
-                <td><input type="radio" name="example_wallet" value="-1"></td>
-                <td><input type="radio" name="example_wallet" value="-0.33"></td>
-                <td><input type="radio" name="example_wallet" value="0.33"></td>
-                <td><input type="radio" name="example_wallet" value="1"></td>
+                <td class="center"><input type="radio" name="example_wallet" value="-1"></td>
+                <td class="center"><input type="radio" name="example_wallet" value="-0.33"></td>
+                <td class="center"><input type="radio" name="example_wallet" value="0.33"></td>
+                <td class="center"><input type="radio" name="example_wallet" value="1"></td>
             </tr>
             <tr>
                 <td>Ask other nearby if the wallet belongs to them</td>
-                <td><input type="radio" name="example_ask" value="-1"></td>
-                <td><input type="radio" name="example_ask" value="-0.33"></td>
-                <td><input type="radio" name="example_ask" value="0.33"></td>
-                <td><input type="radio" name="example_ask" value="1"></td>
+                <td class="center"><input type="radio" name="example_ask" value="-1"></td>
+                <td class="center"><input type="radio" name="example_ask" value="-0.33"></td>
+                <td class="center"><input type="radio" name="example_ask" value="0.33"></td>
+                <td class="center"><input type="radio" name="example_ask" value="1"></td>
             </tr>
             <tr>
                 <td>Leave the wallet where it is</td>
-                <td><input type="radio" name="example_leave" value="-1"></td>
-                <td><input type="radio" name="example_leave" value="-0.33"></td>
-                <td><input type="radio" name="example_leave" value="0.33"></td>
-                <td><input type="radio" name="example_leave" value="1"></td>
+                <td class="center"><input type="radio" name="example_leave" value="-1"></td>
+                <td class="center"><input type="radio" name="example_leave" value="-0.33"></td>
+                <td class="center"><input type="radio" name="example_leave" value="0.33"></td>
+                <td class="center"><input type="radio" name="example_leave" value="1"></td>
             </tr>
             <tr>
                 <td>Give the wallet to the shop manager</td>
-                <td><input type="radio" name="example_manager" value="-1"></td>
-                <td><input type="radio" name="example_manager" value="-0.33"></td>
-                <td><input type="radio" name="example_manager" value="0.33"></td>
-                <td><input type="radio" name="example_manager" value="1"></td>
+                <td class="center"><input type="radio" name="example_manager" value="-1"></td>
+                <td class="center"><input type="radio" name="example_manager" value="-0.33"></td>
+                <td class="center"><input type="radio" name="example_manager" value="0.33"></td>
+                <td class="center"><input type="radio" name="example_manager" value="1"></td>
             </tr>
         </tbody>
     </table>

@@ -1,0 +1,227 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Situation
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'kwtask/main.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Suppose that Individual A is randomly paired with another person, Individual B in an experiment. The pairing
+        is anonymous, meaning that neither individual will ever know the identity of the other individual with whom
+        he or she is paired.
+    </p>
+    <p>
+        In the experiment, Individual A will make a choice, the experimenter will record this choice, and then both
+        individuals will be informed of the choice and paid money based on the choice made by Individual A, as well as
+        a small participation fee. Suppose that neither individual will receive any other money for participating in
+        the experiment.
+    </p>
+    <p>
+        In each pair, Individual A receives $10, Individual B receives $0. Individual A will then have the opportunity
+        to give any amount of his or her $10 to Individual B. For instance, Individual A may decide to not give any
+        money. Or Individual A may decide to give all $10 to Individual B. Individual A may also choose to give any
+        amount between $10 and $0 to Individual B. This choice will determine how much money each participant will
+        receive, privately and in cash, at the end of the experiment.
+    </p>
+
+    <p class="italics">
+        Below, we will present all of Individual A's eleven possible choices one by one. For each of the choices,
+        please indicate whether you believe choosing that option is very socially inappropriate, somewhat socially
+        inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate your response, please
+        click the corresponding button.
+    </p>
+
+    <h3 class="vspace">Decision</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Individual A's choice</td>
+                <td class="italics normal-weight center w15">very socially inappropriate</td>
+                <td class="italics normal-weight center w15">somewhat socially inappropriate</td>
+                <td class="italics normal-weight center w15">somewhat socially appropriate</td>
+                <td class="italics normal-weight center w15">very socially appropriate</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="decision" id="decision10_0">
+                <td>
+                    <span class="bold">Give $0 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $10, Individual B gets $0)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision10_0" name="decision10_0" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision10_0" name="decision10_0" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision10_0" name="decision10_0" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision10_0" name="decision10_0" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision9_1">
+                <td>
+                    <span class="bold">Give $1 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $9, Individual B gets $1)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision9_1" name="decision9_1" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision9_1" name="decision9_1" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision9_1" name="decision9_1" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision9_1" name="decision9_1" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision8_2">
+                <td><span class="bold">Give $2 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $8, Individual B gets $2)</span></td>
+                <td class="center"><input type="radio" id="id_decision8_2" name="decision8_2" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision8_2" name="decision8_2" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision8_2" name="decision8_2" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision8_2" name="decision8_2" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision7_3">
+                <td>
+                    <span class="bold">Give $3 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $7, Individual B gets $3)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision7_3" name="decision7_3" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision7_3" name="decision7_3" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision7_3" name="decision7_3" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision7_3" name="decision7_3" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision6_4">
+                <td>
+                    <span class="bold">Give $4 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $6, Individual B gets $4)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision6_4" name="decision6_4" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision6_4" name="decision6_4" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision6_4" name="decision6_4" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision6_4" name="decision6_4" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision5_5">
+                <td>
+                    <span class="bold">Give $5 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $5, Individual B gets $5)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision5_5" name="decision5_5" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision5_5" name="decision5_5" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision5_5" name="decision5_5" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision5_5" name="decision5_5" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision4_6">
+                <td>
+                    <span class="bold">Give $6 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $4, Individual B gets $6)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision4_6" name="decision4_6" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision4_6" name="decision4_6" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision4_6" name="decision4_6" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision4_6" name="decision4_6" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision3_7">
+                <td>
+                    <span class="bold">Give $7 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $3, Individual B gets $7)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision3_7" name="decision3_7" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision3_7" name="decision3_7" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision3_7" name="decision3_7" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision3_7" name="decision3_7" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision2_8">
+                <td>
+                    <span class="bold">Give $8 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $2, Individual B gets $8)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision2_8" name="decision2_8" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision2_8" name="decision2_8" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision2_8" name="decision2_8" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision2_8" name="decision2_8" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision1_9">
+                <td>
+                    <span class="bold">Give $9 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $1, Individual B gets $9)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision1_9" name="decision1_9" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision1_9" name="decision1_9" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision1_9" name="decision1_9" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision1_9" name="decision1_9" value="1" required></td>
+            </tr>
+            <tr class="decision" id="decision0_10">
+                <td>
+                    <span class="bold">Give $10 to Individual B</span><br>
+                    <span class="tiny">(Individual A gets $0, Individual B gets $10)</span>
+                </td>
+                <td class="center"><input type="radio" id="id_decision0_10" name="decision0_10" value="-1" required></td>
+                <td class="center"><input type="radio" id="id_decision0_10" name="decision0_10" value="-0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision0_10" name="decision0_10" value="0.33" required></td>
+                <td class="center"><input type="radio" id="id_decision0_10" name="decision0_10" value="1" required></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="center">
+        <p class="custom_error" id="form_error_message">Please select a rating!</p>
+        <p id="treatment" class="vspace">
+            Remember that you will earn a bonus if your response to a randomly-selected choice is the same as the most
+            common response provided in today's session.
+        </p>
+        <p>
+            <button type="button" id="fake_next" class="btn btn-primary">Next</button>
+            {% next_button %}
+        </p>
+    </div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'kwtask/jquery.validate.min.js' %}"></script>
+    <script type="text/javascript">
+        let decision_list = js_vars.decision_order;
+        let treatment = js_vars.treatment;
+        let current_decision = 0;
+
+        jQuery.validator.messages.required = "";
+        $("#form").validate();
+
+        // gui setup
+        $(".otree-btn-next").hide();
+        $(".decision").hide();
+        $("#decision"+decision_list[current_decision]).show();
+
+        // listener
+        $('#fake_next').click(function(e) {
+           show_next_decision();
+        });
+
+        // handle input
+        function show_next_decision() {
+            // check valid
+            $("#form").validate();
+            //console.log($("#id_decision"+decision_list[current_decision]).valid());
+            if ($("#id_decision"+decision_list[current_decision]).valid()) {
+                if (current_decision < decision_list.length - 2) {
+                    $('#form_error_message').hide();
+                    $("#decision"+decision_list[current_decision]).fadeOut(complete=function() {
+                        current_decision += 1;
+                        $("#decision" + decision_list[current_decision]).fadeIn();
+                    });
+                } else {
+                    $("#decision"+decision_list[current_decision]).fadeOut(complete=function() {
+                        current_decision += 1;
+                        $("#decision" + decision_list[current_decision]).fadeIn();
+                    });
+                    // we are at the end
+                    $("#fake_next").hide();
+                    $(".otree-btn-next").show();
+                }
+            } else {
+                $('#form_error_message').show();
+            }
+        }
+
+    </script>
+{% endblock %}

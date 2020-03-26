@@ -34,12 +34,37 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 SESSION_CONFIGS = [
     dict(
-        name='kwtask',
-        display_name="Krupka Weber Task",
+        name='kwtask_original',
+        display_name="Krupka Weber Task / Original",
         num_demo_participants=2,
         app_sequence=['kwtask'],
-        participation_fee=0.50
+        participation_fee=0.50,
+        treatment="original"
     ),
+    dict(
+        name='kwtask_always',
+        display_name="Krupka Weber Task / Always",
+        num_demo_participants=2,
+        app_sequence=['kwtask'],
+        participation_fee=0.50,
+        treatment="always remind"
+    ),
+    dict(
+        name='kwtask_never',
+        display_name="Krupka Weber Task / Never",
+        num_demo_participants=2,
+        app_sequence=['kwtask'],
+        participation_fee=0.50,
+        treatment="never remind"
+    ),
+    dict(
+        name='kwtask_inventives',
+        display_name="Krupka Weber Task / No Incentives",
+        num_demo_participants=2,
+        app_sequence=['kwtask'],
+        participation_fee=0.50,
+        treatment="no incentives"
+    )
 ]
 
 

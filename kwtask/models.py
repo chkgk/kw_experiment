@@ -8,7 +8,8 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+import random
+import json
 
 author = 'Christian König gen. Kersting'
 
@@ -23,15 +24,185 @@ class Constants(BaseConstants):
     num_rounds = 1
 
     bonus = c(0.5)
+    decision_list = ["10_0", "9_1", "8_2", "7_3", "6_4", "5_5", "4_6", "3_7", "2_8", "1_9", "0_10"]
 
 
 class Subsession(BaseSubsession):
-    pass
+    modal10_0 = models.StringField()
+    modal9_1 = models.StringField()
+    modal8_2 = models.StringField()
+    modal7_3 = models.StringField()
+    modal6_4 = models.StringField()
+    modal5_5 = models.StringField()
+    modal4_6 = models.StringField()
+    modal3_7 = models.StringField()
+    modal2_8 = models.StringField()
+    modal1_9 = models.StringField()
+    modal0_10 = models.StringField()
 
+    def creating_session(self):
+        treatment = self.session.config.get('treatment', 'original')
+        for player in self.get_players():
+            player.randomize_decision_order()
+            player.set_treatment(treatment)
+
+    def determine_modal_responses(self):
+        players = self.get_players()
+
+        for decision in Constants.decision_list:
+            count = {
+                'ia': 0,
+                'sia': 0,
+                'sa': 0,
+                'a': 0
+            }
+            for player in players:
+                response = player.get_response(decision) == -1
+                count['ia'] += (response == -1)
+                count['sia'] += (response == -0.33)
+                count['sa'] += (response == 0.33)
+                count['a'] += (response == 1)
+
+            modal = max(count, key=count.get)
+            self.set_modal_response(decision, modal)
+
+
+    def set_modal_response(self, decision, modal_response):
+        if decision == "10_0":
+            self.modal10_0 = modal_response
+        elif decision == "9_1":
+            self.modal9_1 = modal_response
+        elif decision == "8_2":
+            self.modal8_2 = modal_response
+        elif decision == "7_3":
+            self.modal7_3 = modal_response
+        elif decision == "6_4":
+            self.modal6_4 = modal_response
+        elif decision == "5_5":
+            self.modal5_5 = modal_response
+        elif decision == "4_6":
+            self.modal4_6 = modal_response
+        elif decision == "3_7":
+            self.modal3_7 = modal_response
+        elif decision == "2_8":
+            self.modal2_8 = modal_response
+        elif decision == "1_9":
+            self.modal1_9 = modal_response
+        elif decision == "0_10":
+            self.modal0_10 = modal_response
+
+    def set_payoffs(self):
+        for player in self.get_players():
+            player.set_payoff()
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    pass
+    treatment = models.StringField()
+    original = models.BooleanField(initial=False)
+    always_remind = models.BooleanField(initial=False)
+    never_remind  = models.BooleanField(initial=False)
+    no_incentives = models.BooleanField(initial=False)
+    just_ask = models.BooleanField(initial=False)
+
+    decision_order = models.StringField()
+
+    decision10_0 = models.FloatField()
+    decision9_1 = models.FloatField()
+    decision8_2 = models.FloatField()
+    decision7_3 = models.FloatField()
+    decision6_4 = models.FloatField()
+    decision5_5 = models.FloatField()
+    decision4_6 = models.FloatField()
+    decision3_7 = models.FloatField()
+    decision2_8 = models.FloatField()
+    decision1_9 = models.FloatField()
+    decision0_10 = models.FloatField()
+
+    selected_decision = models.StringField()
+
+    def randomize_decision_order(self):
+        decision_list = Constants.decision_list.copy()
+        random.shuffle(decision_list)
+        self.decision_order = json.dumps(decision_list)
+
+
+    def set_treatment(self, treatment):
+        self.treatment = treatment
+
+        if treatment == "original":
+            self.original = True
+        elif treatment == "always remind":
+            self.always_remind = True
+        elif treatment == "never remind":
+            self.never_remind = True
+        elif treatment == "no_incentives":
+            self.no_incentives = True
+        elif treatment == "just ask":
+            self.just_ask = True
+
+        self.selected_decision = random.choice(Constants.decision_list)
+
+
+    def get_response(self, decision):
+        dec_map = {
+            "10_0": self.decision10_0,
+            "9_1": self.decision9_1,
+            "8_2": self.decision8_2,
+            "7_3": self.decision7_3,
+            "6_4": self.decision6_4,
+            "5_5": self.decision5_5,
+            "4_6": self.decision4_6,
+            "3_7": self.decision3_7,
+            "2_8": self.decision2_8,
+            "1_9": self.decision1_9,
+            "0_10": self.decision0_10,
+        }
+        return dec_map[decision]
+
+    def set_payoff(self):
+        if self.no_incentives:
+            self.payoff = 0
+            return
+
+        label_to_value = {
+            'ia': -1,
+            'sia': -0.33,
+            'sa': 0.33,
+            'a': 1
+        }
+
+        dec_map = {
+            "10_0": self.decision10_0,
+            "9_1": self.decision9_1,
+            "8_2": self.decision8_2,
+            "7_3": self.decision7_3,
+            "6_4": self.decision6_4,
+            "5_5": self.decision5_5,
+            "4_6": self.decision4_6,
+            "3_7": self.decision3_7,
+            "2_8": self.decision2_8,
+            "1_9": self.decision1_9,
+            "0_10": self.decision0_10,
+        }
+
+        modal_map = {
+            "10_0": self.subsession.modal10_0,
+            "9_1": self.subsession.modal9_1,
+            "8_2": self.subsession.modal8_2,
+            "7_3": self.subsession.modal7_3,
+            "6_4": self.subsession.modal6_4,
+            "5_5": self.subsession.modal5_5,
+            "4_6": self.subsession.modal4_6,
+            "3_7": self.subsession.modal3_7,
+            "2_8": self.subsession.modal2_8,
+            "1_9": self.subsession.modal1_9,
+            "0_10": self.subsession.modal0_10,
+        }
+
+        if dec_map[self.selected_decision] == label_to_value[modal_map[self.selected_decision]]:
+            self.payoff = Constants.bonus
+        else:
+            self.payoff = 0

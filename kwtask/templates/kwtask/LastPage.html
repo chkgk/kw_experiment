@@ -6,12 +6,7 @@
 {% endblock %}
 
 {% block styles %}
-    <style type="text/css">
-        .code {
-            font-family: monospace;
-            font-size: 1.2em;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'kwtask/main.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -23,7 +18,7 @@
         The computer has randomly selected a situation and one of the possible choices in this situation.
         As the experiment is still running, we cannot reveal the random selection at this point. If your response for
         the selected combination of situation and choice was the most frequent response among all participants, you will
-        receove am additional {{ Constants.bonus }} for the experiment. Otherwise, you will only receive the
+        receive am additional {{ Constants.bonus }} for the experiment. Otherwise, you will only receive the
         {{ participation_fee }} participation fee.
     </p>
     <p>

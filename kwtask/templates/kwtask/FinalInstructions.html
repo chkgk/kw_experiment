@@ -6,15 +6,7 @@
 {% endblock %}
 
 {% block styles %}
-    <style type="text/css">
-        thead {
-            font-weight: bold;
-        }
-
-        .vspace {
-            margin-top: 1em;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'kwtask/main.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -22,10 +14,10 @@
         <thead>
             <tr>
                 <td>Individual A's choice</td>
-                <td>very socially appropriate</td>
-                <td>somewhat socially inappropriate</td>
-                <td>somewhat socially appropriate</td>
-                <td>very socially appropriate</td>
+                <td class="center italics normal-weight w15">very socially inappropriate</td>
+                <td class="center italics normal-weight w15">somewhat socially inappropriate</td>
+                <td class="center italics normal-weight w15">somewhat socially appropriate</td>
+                <td class="center italics normal-weight w15">very socially appropriate</td>
             </tr>
         </thead>
         <tbody>

@@ -1,0 +1,51 @@
+.normal-weight {
+    font-weight: normal;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italics {
+    font-style: italic;
+}
+
+thead {
+    font-weight: bold;
+}
+
+td {
+    padding-bottom: 0.5em;
+}
+
+.tiny {
+    font-size: 0.9em;
+}
+
+.center {
+    text-align: center;
+}
+
+.vspace {
+    margin-top: 1em;
+}
+
+.code {
+    font-family: monospace;
+    font-size: 1.2em;
+}
+
+.w15 {
+    width: 15%;
+}
+
+.custom_error {
+    color: #ff0000;
+    font-style: italic;
+    display: none;
+}
+
+#treatment {
+    display: inline-block;
+    width: 80%;
+}
