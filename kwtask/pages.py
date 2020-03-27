@@ -46,10 +46,17 @@ class Decisions(Page):
             'treatment': self.player.treatment
         }
 
-class Res(WaitPage):
-    def after_all_players_arrive(self):
-        self.subsession.determine_modal_responses()
-        self.subsession.set_payoffs()
+
+class Questionnaire(Page):
+    form_model = 'player'
+    form_fields = ['age', 'gender', 'education', 'field_of_study']
+
+    def error_message(self, input_values):
+        if input_values['education'] >= 3 and not input_values['field_of_study']:
+            return "Please provide your field of study."
+
+    def before_next_page(self):
+        self.player.prepare_data_for_analysis()
 
 
 class LastPage(Page):
@@ -63,6 +70,7 @@ class LastPage(Page):
 # don't include these in page_sequence
 def payments_link(request):
     return render(request, 'kwtask/PaymentProcessing.html')
+
 
 def process_payments(request, session_code):
     # get the current session by session_code
@@ -81,6 +89,6 @@ page_sequence = [
     ExampleSituationCont,
     FinalInstructions,
     Decisions,
-    Res,
+    Questionnaire,
     LastPage
 ]

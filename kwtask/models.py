@@ -26,6 +26,10 @@ class Constants(BaseConstants):
     bonus = c(0.5)
     decision_list = ["10_0", "9_1", "8_2", "7_3", "6_4", "5_5", "4_6", "3_7", "2_8", "1_9", "0_10"]
 
+    economics_expressions = [
+        "economist", "economics", "economy", "economic"
+    ]
+
 
 class Subsession(BaseSubsession):
     modal10_0 = models.StringField()
@@ -125,6 +129,31 @@ class Player(BasePlayer):
 
     selected_decision = models.StringField()
 
+    age = models.IntegerField(verbose_name="How old are you?", max=120, doc="Age.")
+    gender = models.StringField(choices=["female", "male", "other", "I prefer not to tell"],
+                                label="What is your gender?", doc="Gender.", widget=widgets.RadioSelectHorizontal)
+    education = models.IntegerField(
+        verbose_name="Which is the highest level of education you have attained?",
+        doc="Education level.",
+        choices=[
+            (1, "some High School"),
+            (2, "High School Graduate"),
+            (3, "some College, no degree"),
+            (4, "Associates degree"),
+            (5, "Bachelor’s degree"),
+            (6, "Master’s degree"),
+            (7, "Doctorate degree")
+        ],
+        widget=widgets.RadioSelect
+        )
+    field_of_study = models.StringField(
+        label="If you have at least some college education, what is/was your field of study?", blank=True,
+        doc="Field of study.")
+
+    # additional variables computed from inputs:
+    female = models.BooleanField(doc="True if participant is female.")
+    economist = models.BooleanField(doc="True if participant is an economist.")
+
     def randomize_decision_order(self):
         decision_list = Constants.decision_list.copy()
         random.shuffle(decision_list)
@@ -163,6 +192,22 @@ class Player(BasePlayer):
             "0_10": self.decision0_10,
         }
         return dec_map[decision]
+
+
+    def prepare_data_for_analysis(self):
+        # female indicator
+        if self.gender == "female":
+            self.female = True
+        else:
+            self.female = False
+
+        if self.field_of_study:
+            if any(word in self.field_of_study.lower() for word in Constants.economics_expressions):
+                self.economist = True
+            else:
+                self.economist = False
+        else:
+            self.economist = False
 
     def set_payoff(self):
         if self.no_incentives:

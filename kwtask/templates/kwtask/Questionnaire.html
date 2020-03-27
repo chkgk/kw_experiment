@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Thank you very much for completing the decision task. We would now like to ask you to fill in a short
+        questionnaire about yourself.
+    </p>
+
+    {% formfield player.age %}
+    {% formfield player.gender %}
+    {% formfield player.education %}
+    {% formfield player.field_of_study %}
+
+    {% next_button %}
+
+{% endblock %}
