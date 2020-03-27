@@ -58,7 +58,7 @@ SESSION_CONFIGS = [
         treatment="never remind"
     ),
     dict(
-        name='kwtask_inventives',
+        name='kwtask_incentives',
         display_name="Krupka Weber Task / No Incentives",
         num_demo_participants=2,
         app_sequence=['kwtask'],

@@ -32,11 +32,13 @@
         indicate your responses. On the next screen you will see an example of a situation.
     </p>
 
-    <p>
-        Before you continue, please prove that you are human.
-    </p>
+    {% if not view.is_debug|default:True %}
+        <p>
+            Before you continue, please prove that you are human.
+        </p>
 
-    {% formfield player.captcha %}
+        {% formfield player.captcha %}
+    {% endif %}
 
     <div class="center">
         {% next_button %}

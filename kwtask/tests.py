@@ -1,4 +1,4 @@
-from otree.api import Currency as c, currency_range
+from otree.api import Currency as c, currency_range, Submission
 from . import pages
 from ._builtin import Bot
 from .models import Constants
@@ -15,7 +15,7 @@ class PlayerBot(Bot):
             'field_of_study': random.choice(['economics', 'business', 'law', 'other']),
         }
 
-        yield pages.Instructions1
+        yield Submission(pages.Instructions1, {'captcha': 'a'}, check_html=False)
         yield pages.ExampleSituation
         yield pages.ExampleSituationCont
         yield pages.FinalInstructions

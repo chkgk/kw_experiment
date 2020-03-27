@@ -5,6 +5,7 @@ from otree.models import Session
 from django.shortcuts import render
 import json
 from captcha.fields import ReCaptchaField
+from django.conf import settings
 
 class Instructions1(Page):
     form_model = 'player'
@@ -12,7 +13,8 @@ class Instructions1(Page):
 
     def get_form(self, data=None, files=None, **kwargs):
         frm = super().get_form(data, files, **kwargs)
-        frm.fields['captcha'] = ReCaptchaField(label='')
+        if not settings.DEBUG:
+            frm.fields['captcha'] = ReCaptchaField(label='')
         return frm
 
 
