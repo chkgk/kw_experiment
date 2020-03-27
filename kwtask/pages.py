@@ -17,6 +17,11 @@ class Instructions1(Page):
             frm.fields['captcha'] = ReCaptchaField(label='')
         return frm
 
+    def vars_for_template(self) -> dict:
+        return {
+            'debug': settings.DEBUG
+        }
+
 
 class ExampleSituation(Page):
     pass
