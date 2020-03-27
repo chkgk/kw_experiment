@@ -4,9 +4,16 @@ from .models import Constants, Player
 from otree.models import Session
 from django.shortcuts import render
 import json
+from captcha.fields import ReCaptchaField
 
 class Instructions1(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['captcha']
+
+    def get_form(self, data=None, files=None, **kwargs):
+        frm = super().get_form(data, files, **kwargs)
+        frm.fields['captcha'] = ReCaptchaField(label='')
+        return frm
 
 
 class ExampleSituation(Page):

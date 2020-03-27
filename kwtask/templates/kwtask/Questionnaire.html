@@ -5,6 +5,10 @@
     Questionnaire
 {% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'kwtask/main.css' %}">
+{% endblock %}
+
 {% block content %}
 
     <p>
@@ -17,6 +21,8 @@
     {% formfield player.education %}
     {% formfield player.field_of_study %}
 
-    {% next_button %}
+    <div class="center">
+        {% next_button %}
+    </div>
 
 {% endblock %}

@@ -13,7 +13,7 @@ SESSION_CONFIG_DEFAULTS = dict(
         keywords='bonus, study, research, decision making',
         title='Short Decision-Making Task',
         description='Make a total of six decisions taking less then 10 minutes.',
-        frame_height=500,
+        frame_height=700,
         template='global/mturk_template.html',
         minutes_allotted_per_assignment=20,
         expiration_hours=2 * 24,
@@ -90,3 +90,11 @@ SECRET_KEY = 'jq6f)a2r1ql&pdq=ac2!*vcxawb$thayb03q3z@6f!!c31g1_o'
 INSTALLED_APPS = ['otree']
 
 ROOT_URLCONF = 'kwtask.urls'
+
+# for recaptcha
+RECAPTCHA_PUBLIC_KEY = environ.get('RECAPTCHA_PUBLIC_KEY', 'none')
+RECAPTCHA_PRIVATE_KEY = environ.get('RECAPTCHA_PRIVATE_KEY', 'none')
+
+EXTENSION_APPS = [
+    'captcha',
+]

@@ -115,6 +115,8 @@ class Player(BasePlayer):
 
     decision_order = models.StringField()
 
+    captcha = models.CharField(blank=True)
+
     decision10_0 = models.FloatField()
     decision9_1 = models.FloatField()
     decision8_2 = models.FloatField()

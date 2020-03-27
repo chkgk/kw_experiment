@@ -5,6 +5,10 @@
     Instructions
 {% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'kwtask/main.css' %}">
+{% endblock %}
+
 {% block content %}
     <p>
         On the following screens, you will read the description of a situation. In the situation, one person,
@@ -28,6 +32,14 @@
         indicate your responses. On the next screen you will see an example of a situation.
     </p>
 
-    {% next_button %}
+    <p>
+        Before you continue, please prove that you are human.
+    </p>
+
+    {% formfield player.captcha %}
+
+    <div class="center">
+        {% next_button %}
+    </div>
 
 {% endblock %}
