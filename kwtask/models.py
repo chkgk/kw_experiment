@@ -111,7 +111,6 @@ class Player(BasePlayer):
     always_remind = models.BooleanField(initial=False)
     never_remind  = models.BooleanField(initial=False)
     no_incentives = models.BooleanField(initial=False)
-    just_ask = models.BooleanField(initial=False)
 
     decision_order = models.StringField()
 
@@ -173,8 +172,6 @@ class Player(BasePlayer):
             self.never_remind = True
         elif treatment == "no incentives":
             self.no_incentives = True
-        elif treatment == "just ask":
-            self.just_ask = True
 
         self.selected_decision = random.choice(Constants.decision_list)
 
