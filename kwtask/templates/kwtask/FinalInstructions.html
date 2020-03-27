@@ -10,51 +10,54 @@
 {% endblock %}
 
 {% block content %}
-    <table>
-        <thead>
-            <tr>
-                <td>Individual A's choice</td>
-                <td class="center italics normal-weight w15">very socially inappropriate</td>
-                <td class="center italics normal-weight w15">somewhat socially inappropriate</td>
-                <td class="center italics normal-weight w15">somewhat socially appropriate</td>
-                <td class="center italics normal-weight w15">very socially appropriate</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Take the wallet</td>
-                <td class="center"><input type="radio" name="example_wallet" value="-1" checked></td>
-                <td class="center"><input type="radio" name="example_wallet" value="-0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_wallet" value="0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_wallet" value="1" disabled></td>
-            </tr>
-            <tr>
-                <td>Ask other nearby if the wallet belongs to them</td>
-                <td class="center"><input type="radio" name="example_ask" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_ask" value="-0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_ask" value="0.33" checked></td>
-                <td class="center"><input type="radio" name="example_ask" value="1" disabled></td>
-            </tr>
-            <tr>
-                <td>Leave the wallet where it is</td>
-                <td class="center"><input type="radio" name="example_leave" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_leave" value="-0.33" checked></td>
-                <td class="center"><input type="radio" name="example_leave" value="0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_leave" value="1" disabled></td>
-            </tr>
-            <tr>
-                <td>Give the wallet to the shop manager</td>
-                <td class="center"><input type="radio" name="example_manager" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_manager" value="-0.33" disabled></td>
-                <td class="center">class="center"<input type="radio" name="example_manager" value="0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_manager" value="1" checked></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <p class="vspace">
-        The following screen page shows the relevant situation, dealing with decisions that Individual A,
-        a participant in an experiment, might have to make.
+    {% if not player.no_incentives %}
+        <table>
+            <thead>
+                <tr>
+                    <td>Individual A's choice</td>
+                    <td class="center italics normal-weight w15">very socially inappropriate</td>
+                    <td class="center italics normal-weight w15">somewhat socially inappropriate</td>
+                    <td class="center italics normal-weight w15">somewhat socially appropriate</td>
+                    <td class="center italics normal-weight w15">very socially appropriate</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Take the wallet</td>
+                    <td class="center"><input type="radio" name="example_wallet" value="-1" checked></td>
+                    <td class="center"><input type="radio" name="example_wallet" value="-0.33" disabled></td>
+                    <td class="center"><input type="radio" name="example_wallet" value="0.33" disabled></td>
+                    <td class="center"><input type="radio" name="example_wallet" value="1" disabled></td>
+                </tr>
+                <tr>
+                    <td>Ask other nearby if the wallet belongs to them</td>
+                    <td class="center"><input type="radio" name="example_ask" value="-1" disabled></td>
+                    <td class="center"><input type="radio" name="example_ask" value="-0.33" disabled></td>
+                    <td class="center"><input type="radio" name="example_ask" value="0.33" checked></td>
+                    <td class="center"><input type="radio" name="example_ask" value="1" disabled></td>
+                </tr>
+                <tr>
+                    <td>Leave the wallet where it is</td>
+                    <td class="center"><input type="radio" name="example_leave" value="-1" disabled></td>
+                    <td class="center"><input type="radio" name="example_leave" value="-0.33" checked></td>
+                    <td class="center"><input type="radio" name="example_leave" value="0.33" disabled></td>
+                    <td class="center"><input type="radio" name="example_leave" value="1" disabled></td>
+                </tr>
+                <tr>
+                    <td>Give the wallet to the shop manager</td>
+                    <td class="center"><input type="radio" name="example_manager" value="-1" disabled></td>
+                    <td class="center"><input type="radio" name="example_manager" value="-0.33" disabled></td>
+                    <td class="center"><input type="radio" name="example_manager" value="0.33" disabled></td>
+                    <td class="center"><input type="radio" name="example_manager" value="1" checked></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="vspace">
+    {% else %}
+        <p>
+    {% endif %}
+        The following screen shows the relevant situation, dealing with decisions that Individual A,
+        a participant in a study just like this, might have to make.
     </p>
     <p>
         Read the description of the situation. Then indicate your
@@ -62,15 +65,15 @@
     </p>
     {% if not player.no_incentives %}
         <p>
-            At the end of the experiment today, will randomly select one of the possible choices that Individual A could
-            make. For the selected choice, we will determine which response was selected by the most people in the
-            experiment today. If you give the same response as that most frequently given by other people, then you will
-            receive an additional {{ Constants.bonus }}. This amount will be paid to you at the conclusion of the
-            experiment. For instance, if we were to select the example situation above and the possible choice "Leave the
-            wallet where it is," and if your response had been "somewhat socially inappropriate," then you would receive
-            {{ Constants.bonus }}, in addition to the {{ participation_fee }} participation fee, if this was the response
-            selected by most other people in today's session. Otherwise you would receive only the {{ participation_fee }}
-            participation fee.
+            At the end of the sudy today, the computer will randomly select one of the possible choices that
+            Individual A could make. For the selected choice, the computer will determine which response was selected by
+            the most people in the study today. If you give the same response as that most frequently given by other
+            people, then you will receive an additional {{ Constants.bonus }}. This amount will be paid to you at the
+            conclusion of the study. For instance, if the computer were to select the possible choice "Leave the wallet
+            where it is,"  and if your response had been "somewhat socially inappropriate," then you would receive
+            {{ Constants.bonus }}, in addition to the {{ participation_fee }} participation fee, if this was the
+            response selected by most other people in today's session. Otherwise you would receive only the
+            {{ participation_fee }} participation fee.
         </p>
     {% endif %}
 

@@ -169,7 +169,7 @@ class Player(BasePlayer):
             self.always_remind = True
         elif treatment == "never remind":
             self.never_remind = True
-        elif treatment == "no_incentives":
+        elif treatment == "no incentives":
             self.no_incentives = True
         elif treatment == "just ask":
             self.just_ask = True

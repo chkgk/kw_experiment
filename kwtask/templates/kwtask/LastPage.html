@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Final Instructions
+    Payment Code
 {% endblock %}
 
 {% block styles %}
@@ -17,14 +17,14 @@
     {% if not player.no_incentives %}
         <p>
             The computer has randomly selected one of the possible choices in the described situation.
-            As the experiment is still running, we cannot reveal the random selection at this point. If your response for
+            As the study is still running, we cannot reveal the random selection at this point. If your response for
             the selected choice was the most frequently chosen response among all participants, you will
-            receive am additional {{ Constants.bonus }} for the experiment. Otherwise, you will only receive the
+            receive am additional {{ Constants.bonus }} for the study. Otherwise, you will only receive the
             {{ participation_fee }} participation fee.
         </p>
     {% endif %}
     <p>
-        Please enter the following code on MTurk to receive your payment: <span class="code">KWExperimentMarch2020</span>
+        Please enter the following code on MTurk to receive your payment: <span class="code">KWStudyMarch2020</span>
     </p>
 
     {% next_button %}

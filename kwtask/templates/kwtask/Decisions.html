@@ -12,22 +12,22 @@
 {% block content %}
 
     <p>
-        Suppose that Individual A is randomly paired with another person, Individual B, in an experiment. The pairing
+        Suppose that Individual A is randomly paired with another person, Individual B, in a study. The pairing
         is anonymous, meaning that neither individual will ever know the identity of the other individual with whom
         he or she is paired.
     </p>
     <p>
-        In the experiment, Individual A will make a choice, the experimenter will record this choice, and then both
+        In the study, Individual A will make a choice, the experimenter will record this choice, and then both
         individuals will be informed of the choice and paid money based on the choice made by Individual A, as well as
         a small participation fee. Suppose that neither individual will receive any other money for participating in
-        the experiment.
+        the study.
     </p>
     <p>
         In each pair, Individual A receives $10, Individual B receives $0. Individual A will then have the opportunity
         to give any amount of his or her $10 to Individual B. For instance, Individual A may decide to not give any
         money. Or Individual A may decide to give all $10 to Individual B. Individual A may also choose to give any
         amount between $10 and $0 to Individual B. This choice will determine how much money each participant will
-        receive, privately and in cash, at the end of the experiment.
+        receive, privately and in cash, at the end of the study.
     </p>
 
     <p class="italics">
@@ -37,7 +37,7 @@
         select the corresponding button, then click next.
     </p>
 
-    <h3 class="vspace">Decision</h3>
+    <h3 class="vspace">Choice <span id="choice_counter">1</span></h3>
 
     <table>
         <thead>
@@ -185,7 +185,9 @@
         let current_decision = 0;
 
         jQuery.validator.messages.required = "";
-        $("#form").validate();
+        $("#form").validate({
+            onsubmit: false,
+        });
 
         // gui setup
         $(".otree-btn-next").hide();
@@ -206,28 +208,24 @@
             // check valid
             $("#form").validate();
             //console.log($("#id_decision"+decision_list[current_decision]).valid());
-            if ($("#id_decision"+decision_list[current_decision]).valid()) {
+            if ($("#id_decision" + decision_list[current_decision]).valid()) {
                 if (treatment === "original" && current_decision === 0) {
                     $('#treatment').fadeOut();
                 }
-                if (current_decision < decision_list.length - 2) {
+
+                if (current_decision+1  < decision_list.length) {
                     $('#form_error_message').hide();
-                    $("#decision"+decision_list[current_decision]).fadeOut(complete=function() {
-                        current_decision += 1;
+                    $("#decision" + decision_list[current_decision]).fadeOut(complete = function () {
                         $("#decision" + decision_list[current_decision]).fadeIn();
+                        $('#choice_counter').html(current_decision + 1);
                     });
                 } else {
-                    $("#decision"+decision_list[current_decision]).fadeOut(complete=function() {
-                        current_decision += 1;
-                        $("#decision" + decision_list[current_decision]).fadeIn();
-                    });
-                    // we are at the end
-                    $("#fake_next").hide();
-                    $(".otree-btn-next").show();
+                    $('#form').submit();
                 }
+                current_decision += 1;
             } else {
                 $('#form_error_message').show();
             }
-
+        }
     </script>
 {% endblock %}
