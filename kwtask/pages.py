@@ -79,6 +79,11 @@ class LastPage(Page):
             'participation_fee': self.session.config['participation_fee']
         }
 
+    def before_next_page(self):
+        if self.participant._is_bot and self.player.id_in_group == len(self.subsession.get_players()):
+            self.subsession.determine_modal_responses()
+            self.subsession.set_payoffs()
+
 
 # custom payment processing
 # don't include these in page_sequence
