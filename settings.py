@@ -58,12 +58,20 @@ SESSION_CONFIGS = [
         treatment="never remind"
     ),
     dict(
-        name='kwtask_incentives',
-        display_name="Krupka Weber Task / No Incentives",
+        name='kwtask_first',
+        display_name="Krupka Weber Task / First Order, No Incentives",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="no incentives"
+        treatment="first"
+    ),
+    dict(
+        name='kwtask_second',
+        display_name="Krupka Weber Task / Second Order, No Incentives",
+        num_demo_participants=2,
+        app_sequence=['kwtask'],
+        participation_fee=0.75,
+        treatment="second"
     ),
     dict(
         name='kwtask_incentives_only',

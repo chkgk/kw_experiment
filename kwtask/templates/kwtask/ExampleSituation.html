@@ -16,13 +16,14 @@
         take the wallet, ask others nearby if the wallet belongs to them, leave the wallet where it is, or give the
         wallet to the shop manager. Individual A can choose one of these four options.
     </p>
-    {% if player.incentives_only %}
+    {% if player.incentives_only or player.second %}
         <p class="italics">
             The table below presents a list of the possible choices available to Individual A. For each of the choices,
             you will be asked to indicate whether most people would believe that option to be very socially inappropriate,
             somewhat socially inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate
             your response, you would select the corresponding button. Note: In this example, the buttons are disabled.
         </p>
+        
     {% else %} {# all other treatments #}
         <p class="italics">
             The table below presents a list of the possible choices available to Individual A. For each of the choices,
@@ -72,7 +73,7 @@
             </tr>
         </tbody>
     </table>
-    {% if player.incentives_only %}
+    {% if player.incentives_only or player.second %}
         <p class="vspace">
             If this were the situation for this study, you would consider each of the possible choices above individually
             and, for each choice, indicate the extent to which most people believe taking that action would be "socially appropriate"

@@ -109,7 +109,9 @@ class Player(BasePlayer):
     treatment = models.StringField()
     original = models.BooleanField(initial=False)
     always_remind = models.BooleanField(initial=False)
-    never_remind  = models.BooleanField(initial=False)
+    never_remind = models.BooleanField(initial=False)
+    first = models.BooleanField(initial=False)
+    second = models.BooleanField(initial=False)
     no_incentives = models.BooleanField(initial=False)
     incentives_only = models.BooleanField(initial=False)
 
@@ -199,8 +201,12 @@ class Player(BasePlayer):
             self.always_remind = True
         elif treatment == "never remind":
             self.never_remind = True
-        elif treatment == "no incentives":
+        elif treatment == "first":
             self.no_incentives = True
+            self.first = True
+        elif treatment == "second":
+            self.no_incentives = True
+            self.second = True
         elif treatment == "incentives only":
             self.incentives_only = True
 
@@ -238,8 +244,11 @@ class Player(BasePlayer):
             self.economist = False
 
         if self.no_incentives:
-            self.understood_task = self.task_question == 0
             self.understood_incentives = self.task_incentives == 0
+            if self.first:
+                self.understood_task = self.task_question == 0
+            else:
+                self.understood_task = self.task_question == 1
         else:
             self.understood_task = self.task_question == 1
             self.understood_incentives = self.task_incentives == 2
