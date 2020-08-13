@@ -15,6 +15,11 @@ class PlayerBot(Bot):
             'field_of_study': random.choice(['economics', 'business', 'law', 'other']),
         }
 
+        valid_assessment = {
+            'task_question': random.randint(0, 1),
+            'task_incentives': random.randint(0, 2)
+        }
+
         yield Submission(pages.Instructions1, {'captcha': 'a'}, check_html=False)
         yield pages.ExampleSituation
         yield pages.ExampleSituationCont
@@ -33,5 +38,6 @@ class PlayerBot(Bot):
             "decision1_9": random.choice(likert_choices),
             "decision0_10": random.choice(likert_choices)
         }
+        yield pages.Assessment, valid_assessment
         yield pages.Questionnaire, valid_questionnaire
         yield pages.LastPage

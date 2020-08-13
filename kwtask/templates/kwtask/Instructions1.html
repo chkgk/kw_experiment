@@ -23,10 +23,12 @@
         agree is the "correct" or "ethical" thing to do. Another way to think about what we mean is that if Individual
         A were to select a socially inappropriate choice, then someone else might be angry at Individual A for doing so.
     </p>
-    <p>
-        In each of your responses, we would like you to answer as truthfully as possible, based on your opinions of
-        what constitutes socially appropriate or socially inappropriate behavior.
-    </p>
+    {% if not player.incentives_only %}
+        <p>
+            In each of your responses, we would like you to answer as truthfully as possible, based on your opinions of
+            what constitutes socially appropriate or socially inappropriate behavior.
+        </p>
+    {% endif %}
     <p>
         To give you an idea of how the study will proceed, we will go through an example and show you how you will
         indicate your responses. On the next screen you will see an example of a situation.

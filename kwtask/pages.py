@@ -1,11 +1,11 @@
-from otree.api import Currency as c, currency_range
-from ._builtin import Page, WaitPage
-from .models import Constants, Player
+from ._builtin import Page
 from otree.models import Session
 from django.shortcuts import render
-import json
-from captcha.fields import ReCaptchaField
 from django.conf import settings
+from captcha.fields import ReCaptchaField
+
+import json
+
 
 class Instructions1(Page):
     form_model = 'player'
@@ -60,6 +60,10 @@ class Decisions(Page):
             'treatment': self.player.treatment
         }
 
+class Assessment(Page):
+    form_model = 'player'
+    form_fields = ['task_question', 'task_incentives']
+
 
 class Questionnaire(Page):
     form_model = 'player'
@@ -108,6 +112,7 @@ page_sequence = [
     ExampleSituationCont,
     FinalInstructions,
     Decisions,
+    Assessment,
     Questionnaire,
     LastPage
 ]

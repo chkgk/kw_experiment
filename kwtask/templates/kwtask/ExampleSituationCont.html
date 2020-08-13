@@ -10,16 +10,26 @@
 {% endblock %}
 
 {% block content %}
-
-    <p>
-        For example, suppose you thought that taking the wallet was
-        <span class="italics">very socially inappropriate</span>, asking others nearby
-        if the wallet belongs to them was <span class="italics">somewhat socially appropriate</span>, leaving the
-        wallet where it is was <span class="italics">somewhat socially inappropriate</span>, and giving the wallet to
-        the shop manager was <span class="italics">very socially appropriate</span>. Then you would indicate your
-        responses as follows:
-    </p>
-
+    
+    {% if player.incentives_only %}
+        <p>
+            For example, suppose you thought that most people thought that taking the wallet was
+            <span class="italics">very socially inappropriate</span>, asking others nearby
+            if the wallet belongs to them was <span class="italics">somewhat socially appropriate</span>, leaving the
+            wallet where it is was <span class="italics">somewhat socially inappropriate</span>, and giving the wallet to
+            the shop manager was <span class="italics">very socially appropriate</span>. Then you would indicate your
+            responses as follows:
+        </p>
+    {% else %}
+        <p>
+            For example, suppose you thought that taking the wallet was
+            <span class="italics">very socially inappropriate</span>, asking others nearby
+            if the wallet belongs to them was <span class="italics">somewhat socially appropriate</span>, leaving the
+            wallet where it is was <span class="italics">somewhat socially inappropriate</span>, and giving the wallet to
+            the shop manager was <span class="italics">very socially appropriate</span>. Then you would indicate your
+            responses as follows:
+        </p>
+    {% endif %}
     <table>
         <thead>
             <tr>

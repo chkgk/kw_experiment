@@ -2,7 +2,7 @@
 {% load otree %}
 
 {% block title %}
-    Demographics
+    Questionnaire
 {% endblock %}
 
 {% block styles %}
@@ -12,13 +12,11 @@
 {% block content %}
 
     <p>
-        Finally, we would like to ask you some questions about yourself.
+        Thank you very much for completing the decision task. We would now like to ask to answer two questions about this study.
     </p>
-
-    {% formfield player.age %}
-    {% formfield player.gender %}
-    {% formfield player.education %}
-    {% formfield player.field_of_study %}
+    
+    {% formfield player.task_question %}
+    {% formfield player.task_incentives %}
 
     <div class="center">
         {% next_button %}

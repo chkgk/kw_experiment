@@ -29,13 +29,22 @@
         amount between $10 and $0 to Individual B. This choice will determine how much money each participant will
         receive, privately and in cash, at the end of the study.
     </p>
-
-    <p class="italics">
-        Below, we will present all of Individual A's eleven possible choices one by one. For each of the choices,
-        please indicate whether you believe choosing that option is very socially inappropriate, somewhat socially
-        inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate your response, please
-        select the corresponding button, then click next.
-    </p>
+    
+    {% if player.incentives_only %}
+        <p class="italics">
+            Below, we will present all of Individual A's eleven possible choices one by one. For each of the choices,
+            please indicate whether most people believe choosing that option is very socially inappropriate, somewhat socially
+            inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate your response, please
+            select the corresponding button, then click next.
+        </p>
+    {% else %}
+        <p class="italics">
+            Below, we will present all of Individual A's eleven possible choices one by one. For each of the choices,
+            please indicate whether you believe choosing that option is very socially inappropriate, somewhat socially
+            inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate your response, please
+            select the corresponding button, then click next.
+        </p>
+    {% endif %}
 
     <h3 class="vspace">Choice <span id="choice_counter">1</span></h3>
 

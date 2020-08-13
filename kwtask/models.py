@@ -23,11 +23,11 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
-    bonus = c(0.5)
+    bonus = c(0.75)
     decision_list = ["10_0", "9_1", "8_2", "7_3", "6_4", "5_5", "4_6", "3_7", "2_8", "1_9", "0_10"]
 
     economics_expressions = [
-        "economist", "economics", "economy", "economic"
+        "economist", "economics", "economy", "economic", "econ"
     ]
 
 
@@ -111,6 +111,7 @@ class Player(BasePlayer):
     always_remind = models.BooleanField(initial=False)
     never_remind  = models.BooleanField(initial=False)
     no_incentives = models.BooleanField(initial=False)
+    incentives_only = models.BooleanField(initial=False)
 
     decision_order = models.StringField()
 
@@ -129,6 +130,16 @@ class Player(BasePlayer):
     decision0_10 = models.FloatField()
 
     selected_decision = models.StringField()
+
+    task_question = models.IntegerField(
+        verbose_name="Which of the following two statements about your task is true?",
+        widget=widgets.RadioSelect()
+    )
+
+    task_incentives = models.IntegerField(
+        verbose_name="Which of the following three statements about payments is true?",
+        widget=widgets.RadioSelect()
+    )
 
     age = models.IntegerField(verbose_name="How old are you?", max=120, doc="Age.")
     gender = models.StringField(choices=["female", "male", "other", "I prefer not to tell"],
@@ -154,12 +165,30 @@ class Player(BasePlayer):
     # additional variables computed from inputs:
     female = models.BooleanField(doc="True if participant is female.")
     economist = models.BooleanField(doc="True if participant is an economist.")
+    understood_task = models.BooleanField()
+    understood_incentives = models.BooleanField()
+
+    def task_question_choices(self):
+        choices = [
+            (0, "I was asked to give appropriateness ratings based on my own, personal beliefs."),
+            (1, "I was asked to give appropriateness ratings based on what I thought most people would believe."),
+        ]
+        random.shuffle(choices)
+        return choices
+
+    def task_incentives_choices(self):
+        choices = [
+            (0, "My total payment for this study is independent of my responses."),
+            (1, "My total payment for this study depends on my own, personal beliefs."),
+            (2, "My total payment for this study depends on my ability to anticipate what most people believe.")
+        ]
+        random.shuffle(choices)
+        return choices
 
     def randomize_decision_order(self):
         decision_list = Constants.decision_list.copy()
         random.shuffle(decision_list)
         self.decision_order = json.dumps(decision_list)
-
 
     def set_treatment(self, treatment):
         self.treatment = treatment
@@ -172,9 +201,10 @@ class Player(BasePlayer):
             self.never_remind = True
         elif treatment == "no incentives":
             self.no_incentives = True
+        elif treatment == "incentives only":
+            self.incentives_only = True
 
         self.selected_decision = random.choice(Constants.decision_list)
-
 
     def get_response(self, decision):
         dec_map = {
@@ -192,7 +222,6 @@ class Player(BasePlayer):
         }
         return dec_map[decision]
 
-
     def prepare_data_for_analysis(self):
         # female indicator
         if self.gender == "female":
@@ -207,6 +236,14 @@ class Player(BasePlayer):
                 self.economist = False
         else:
             self.economist = False
+
+        if self.no_incentives:
+            self.understood_task = self.task_question == 0
+            self.understood_incentives = self.task_incentives == 0
+        else:
+            self.understood_task = self.task_question == 1
+            self.understood_incentives = self.task_incentives == 2
+
 
     def set_payoff(self):
         if self.no_incentives:
