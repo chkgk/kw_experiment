@@ -55,17 +55,21 @@ class Subsession(BaseSubsession):
 
         for decision in Constants.decision_list:
             count = {
+                'via': 0,
                 'ia': 0,
                 'sia': 0,
                 'sa': 0,
-                'a': 0
+                'a': 0,
+                'va': 0
             }
             for player in players:
                 response = player.get_response(decision)
-                count['ia'] += (response == -1)
-                count['sia'] += (response == -0.33)
-                count['sa'] += (response == 0.33)
-                count['a'] += (response == 1)
+                count['via'] += (response == -3)
+                count['ia'] += (response == -2)
+                count['sia'] += (response == -1)
+                count['sa'] += (response == 1)
+                count['a'] += (response == 2)
+                count['va'] += (response == 3)
 
             modal = max(count, key=count.get)
             self.set_modal_response(decision, modal)
@@ -119,17 +123,17 @@ class Player(BasePlayer):
 
     captcha = models.CharField(blank=True)
 
-    decision10_0 = models.FloatField()
-    decision9_1 = models.FloatField()
-    decision8_2 = models.FloatField()
-    decision7_3 = models.FloatField()
-    decision6_4 = models.FloatField()
-    decision5_5 = models.FloatField()
-    decision4_6 = models.FloatField()
-    decision3_7 = models.FloatField()
-    decision2_8 = models.FloatField()
-    decision1_9 = models.FloatField()
-    decision0_10 = models.FloatField()
+    decision10_0 = models.IntegerField()
+    decision9_1 = models.IntegerField()
+    decision8_2 = models.IntegerField()
+    decision7_3 = models.IntegerField()
+    decision6_4 = models.IntegerField()
+    decision5_5 = models.IntegerField()
+    decision4_6 = models.IntegerField()
+    decision3_7 = models.IntegerField()
+    decision2_8 = models.IntegerField()
+    decision1_9 = models.IntegerField()
+    decision0_10 = models.IntegerField()
 
     selected_decision = models.StringField()
 
@@ -261,10 +265,12 @@ class Player(BasePlayer):
             return
 
         label_to_value = {
-            'ia': -1,
-            'sia': -0.33,
-            'sa': 0.33,
-            'a': 1
+            'via': -3,
+            'ia': -2,
+            'sia': -1,
+            'sa': 1,
+            'a': 2,
+            'va': 3
         }
 
         dec_map = {

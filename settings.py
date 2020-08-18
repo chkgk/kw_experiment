@@ -35,7 +35,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 SESSION_CONFIGS = [
     dict(
         name='kwtask_original',
-        display_name="Krupka Weber Task / Original",
+        display_name="Krupka Weber Task / Baseline",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
@@ -43,7 +43,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='kwtask_always',
-        display_name="Krupka Weber Task / Always",
+        display_name="Krupka Weber Task / Always Remind",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
@@ -51,7 +51,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='kwtask_never',
-        display_name="Krupka Weber Task / Never",
+        display_name="Krupka Weber Task / Never Remind",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
@@ -59,7 +59,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='kwtask_first',
-        display_name="Krupka Weber Task / First Order, No Incentives",
+        display_name="Krupka Weber Task / First Order Belief",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
@@ -67,7 +67,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='kwtask_second',
-        display_name="Krupka Weber Task / Second Order, No Incentives",
+        display_name="Krupka Weber Task / Second Order Belief",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
@@ -75,7 +75,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='kwtask_incentives_only',
-        display_name="Krupka Weber Task / Incentives Only",
+        display_name="Krupka Weber Task / No Conflict",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,

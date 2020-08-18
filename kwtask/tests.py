@@ -6,7 +6,7 @@ import random
 
 class PlayerBot(Bot):
     def play_round(self):
-        likert_choices = [-1, -0.33, 0.33, 1]
+        likert_choices = [-3, -2, -1, 1, 2, 3]
 
         valid_questionnaire = {
             'age': random.randint(18, 60),

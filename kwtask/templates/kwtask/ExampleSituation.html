@@ -20,56 +20,68 @@
         <p class="italics">
             The table below presents a list of the possible choices available to Individual A. For each of the choices,
             you will be asked to indicate whether most people would believe that option to be very socially inappropriate,
-            somewhat socially inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate
-            your response, you would select the corresponding button. Note: In this example, the buttons are disabled.
+            socially inappropriate, somewhat socially inappropriate, somewhat socially appropriate, socially appropriate, 
+            or very socially appropriate. To indicate your response, you would select the corresponding button. 
+            Note: In this example, the buttons are disabled.
         </p>
         
     {% else %} {# all other treatments #}
         <p class="italics">
             The table below presents a list of the possible choices available to Individual A. For each of the choices,
             you will be asked to indicate whether you believe choosing that option is very socially inappropriate,
-            somewhat socially inappropriate, somewhat socially appropriate, or very socially appropriate. To indicate
-            your response, you would select the corresponding button. Note: In this example, the buttons are disabled.
+            socially inappropriate, somewhat socially inappropriate, somewhat socially appropriate, socially appropriate, 
+            or very socially appropriate. To indicate your response, you would select the corresponding button. 
+            Note: In this example, the buttons are disabled.
         </p>
     {% endif %}
     <table>
         <thead>
             <tr>
                 <td>Individual A's choice</td>
-                <td class="italics normal-weight center w15">very socially inappropriate</td>
-                <td class="italics normal-weight center w15">somewhat socially inappropriate</td>
-                <td class="italics normal-weight center w15">somewhat socially appropriate</td>
-                <td class="italics normal-weight center w15">very socially appropriate</td>
+                <td class="center italics normal-weight w10 tiny">very socially inappropriate</td>
+                <td class="italics normal-weight center w10 tiny">socially inappropriate</td>
+                <td class="center italics normal-weight w10 tiny">somewhat socially inappropriate</td>
+                <td class="center italics normal-weight w10 tiny">somewhat socially appropriate</td>
+                <td class="italics normal-weight center w10 tiny">socially appropriate</td>
+                <td class="center italics normal-weight w10 tiny">very socially appropriate</td>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Take the wallet</td>
+                <td class="center"><input type="radio" name="example_wallet" value="-3" disabled></td>
+                <td class="center"><input type="radio" name="example_wallet" value="-2" disabled></td>
                 <td class="center"><input type="radio" name="example_wallet" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_wallet" value="-0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_wallet" value="0.33" disabled></td>
                 <td class="center"><input type="radio" name="example_wallet" value="1" disabled></td>
+                <td class="center"><input type="radio" name="example_wallet" value="2" disabled></td>
+                <td class="center"><input type="radio" name="example_wallet" value="3" disabled></td>
             </tr>
             <tr>
                 <td>Ask other nearby if the wallet belongs to them</td>
+                <td class="center"><input type="radio" name="example_ask" value="-3" disabled></td>
+                <td class="center"><input type="radio" name="example_ask" value="-2" disabled></td>
                 <td class="center"><input type="radio" name="example_ask" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_ask" value="-0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_ask" value="0.33" disabled></td>
                 <td class="center"><input type="radio" name="example_ask" value="1" disabled></td>
+                <td class="center"><input type="radio" name="example_ask" value="2" disabled></td>
+                <td class="center"><input type="radio" name="example_ask" value="6" disabled></td>
             </tr>
             <tr>
                 <td>Leave the wallet where it is</td>
+                <td class="center"><input type="radio" name="example_leave" value="-3" disabled></td>
+                <td class="center"><input type="radio" name="example_leave" value="-2" disabled></td>
                 <td class="center"><input type="radio" name="example_leave" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_leave" value="-0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_leave" value="0.33" disabled></td>
                 <td class="center"><input type="radio" name="example_leave" value="1" disabled></td>
+                <td class="center"><input type="radio" name="example_leave" value="2" disabled></td>
+                <td class="center"><input type="radio" name="example_leave" value="3" disabled></td>
             </tr>
             <tr>
                 <td>Give the wallet to the shop manager</td>
+                <td class="center"><input type="radio" name="example_manager" value="-3" disabled></td>
+                <td class="center"><input type="radio" name="example_manager" value="-2" disabled></td>
                 <td class="center"><input type="radio" name="example_manager" value="-1" disabled></td>
-                <td class="center"><input type="radio" name="example_manager" value="-0.33" disabled></td>
-                <td class="center"><input type="radio" name="example_manager" value="0.33" disabled></td>
                 <td class="center"><input type="radio" name="example_manager" value="1" disabled></td>
+                <td class="center"><input type="radio" name="example_manager" value="2" disabled></td>
+                <td class="center"><input type="radio" name="example_manager" value="3" disabled></td>
             </tr>
         </tbody>
     </table>
