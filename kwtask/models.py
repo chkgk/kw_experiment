@@ -45,7 +45,6 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         treatment = self.session.config.get('treatment', 'baseline')
-        print(treatment)
         for player in self.get_players():
             player.randomize_decision_order()
             player.set_treatment(treatment)
@@ -184,9 +183,9 @@ class Player(BasePlayer):
 
     def task_incentives_choices(self):
         choices = [
-            (0, "My total payment for this study is independent of my responses."),
-            (1, "My total payment for this study depends on my own, personal beliefs."),
-            (2, "My total payment for this study depends on my ability to anticipate what most people believe.")
+            (0, "My payment for this study is independent of my responses."),
+            (1, "My payment for this study depends on my own, personal beliefs."),
+            (2, "My payment for this study depends on my ability to anticipate what most people believe.")
         ]
         random.shuffle(choices)
         return choices
@@ -198,7 +197,6 @@ class Player(BasePlayer):
 
     def set_treatment(self, treatment):
         self.treatment = treatment
-        print(self.treatment)
         if treatment == "baseline":
             self.baseline = True
         elif treatment == "always remind":

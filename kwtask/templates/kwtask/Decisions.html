@@ -227,7 +227,7 @@
         $(".decision").hide();
         $("#decision"+decision_list[current_decision]).show();
 
-        if (treatment === "no incentives" || treatment === "never remind" || treatment === "first" || treatment === "second") {
+        if (treatment === "never remind" || treatment === "first" || treatment === "second") {
             $('#treatment').hide();
         }
 
@@ -242,7 +242,7 @@
             $("#form").validate();
             //console.log($("#id_decision"+decision_list[current_decision]).valid());
             if ($("#id_decision" + decision_list[current_decision]).valid()) {
-                if (treatment === "original" && current_decision === 0) {
+                if (treatment === "baseline" && current_decision === 0) {
                     $('#treatment').fadeOut();
                 }
 

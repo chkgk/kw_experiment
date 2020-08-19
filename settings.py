@@ -8,29 +8,53 @@ from os import environ
 SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00,
     participation_fee=0.00,
-    doc="",
-    mturk_hit_settings=dict(
-        keywords='bonus, study, research, decision making',
-        title='Short Decision-Making Task',
-        description='Make a total of six decisions taking less then 10 minutes.',
-        frame_height=500,
-        template='global/mturk_template.html',
-        minutes_allotted_per_assignment=20,
-        expiration_hours=2 * 24,
-        qualification_requirements=[
-            {
-                'QualificationTypeId': '00000000000000000071',
-                'Comparator': 'EqualTo',
-                'LocaleValues':  [{'Country': "US"}]
-            },
-            {
-                'QualificationTypeId': '3DUIEQIYL66N062LWCCQO5MIE7TY24',
-                'Comparator': 'DoesNotExist'
-            }
-        ],
-        grant_qualification_id='3DUIEQIYL66N062LWCCQO5MIE7TY24', # to prevent retakes
-    )
+    doc=""
 )
+
+MTURK_CONFIG_BONUS = dict(
+    keywords='bonus, study, research, decision making',
+    title='Short Decision-Making Study (5-10min)',
+    description='Give a series of 11 ratings and have the chance to earn a bonus.',
+    frame_height=500,
+    template='global/mturk_template.html',
+    minutes_allotted_per_assignment=20,
+    expiration_hours=2 * 24,
+    qualification_requirements=[
+        {
+            'QualificationTypeId': '00000000000000000071',
+            'Comparator': 'EqualTo',
+            'LocaleValues':  [{'Country': "US"}]
+        },
+        {
+            'QualificationTypeId': '3DUIEQIYL66N062LWCCQO5MIE7TY24',
+            'Comparator': 'DoesNotExist'
+        }
+    ],
+    grant_qualification_id='3DUIEQIYL66N062LWCCQO5MIE7TY24', # to prevent retakes
+)
+
+MTURK_CONFIG_NO_BONUS = dict(
+    keywords='study, research, decision making',
+    title='Short Decision-Making Study (5-10min)',
+    description='Give a series of 11 ratings.',
+    frame_height=500,
+    template='global/mturk_template_no_bonus.html',
+    minutes_allotted_per_assignment=20,
+    expiration_hours=2 * 24,
+    qualification_requirements=[
+        {
+            'QualificationTypeId': '00000000000000000071',
+            'Comparator': 'EqualTo',
+            'LocaleValues':  [{'Country': "US"}]
+        },
+        {
+            'QualificationTypeId': '3DUIEQIYL66N062LWCCQO5MIE7TY24',
+            'Comparator': 'DoesNotExist'
+        }
+    ],
+    grant_qualification_id='3DUIEQIYL66N062LWCCQO5MIE7TY24', # to prevent retakes
+)
+
 
 SESSION_CONFIGS = [
     dict(
@@ -39,7 +63,8 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="baseline"
+        treatment="baseline",
+        mturk_hit_settings=MTURK_CONFIG_BONUS
     ),
     dict(
         name='kwtask_always',
@@ -47,7 +72,8 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="always remind"
+        treatment="always remind",
+        mturk_hit_settings=MTURK_CONFIG_BONUS
     ),
     dict(
         name='kwtask_never',
@@ -55,7 +81,8 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="never remind"
+        treatment="never remind",
+        mturk_hit_settings=MTURK_CONFIG_BONUS
     ),
     dict(
         name='kwtask_first',
@@ -63,7 +90,8 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="first"
+        treatment="first",
+        mturk_hit_settings=MTURK_CONFIG_NO_BONUS
     ),
     dict(
         name='kwtask_second',
@@ -71,7 +99,8 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="second"
+        treatment="second",
+        mturk_hit_settings=MTURK_CONFIG_NO_BONUS
     ),
     dict(
         name='kwtask_no_conflict',
@@ -79,7 +108,8 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="no conflict"
+        treatment="no conflict",
+        mturk_hit_settings=MTURK_CONFIG_BONUS
     )
 ]
 
