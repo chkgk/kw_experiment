@@ -1,12 +1,12 @@
-from otree.api import Currency as c, currency_range, Submission
+from otree.api import Submission
 from . import pages
 from ._builtin import Bot
-from .models import Constants
 import random
 
 class PlayerBot(Bot):
     def play_round(self):
-        likert_choices = [-3, -2, -1, 1, 2, 3]
+        # likert_choices = [-3, -2, -1, 1, 2, 3]
+        weighted_choices = ['-3'] * 10 + ['-2'] * 15 + ['-1'] * 25 + 25 * ['1'] + 15 * ['2'] + 10 * ['3']
 
         valid_questionnaire = {
             'age': random.randint(18, 60),
@@ -26,17 +26,17 @@ class PlayerBot(Bot):
         yield pages.FinalInstructions
 
         yield pages.Decisions, {
-            "decision10_0": random.choice(likert_choices),
-            "decision9_1": random.choice(likert_choices),
-            "decision8_2": random.choice(likert_choices),
-            "decision7_3": random.choice(likert_choices),
-            "decision6_4": random.choice(likert_choices),
-            "decision5_5": random.choice(likert_choices),
-            "decision4_6": random.choice(likert_choices),
-            "decision3_7": random.choice(likert_choices),
-            "decision2_8": random.choice(likert_choices),
-            "decision1_9": random.choice(likert_choices),
-            "decision0_10": random.choice(likert_choices)
+            "decision10_0": random.choice(weighted_choices),
+            "decision9_1": random.choice(weighted_choices),
+            "decision8_2": random.choice(weighted_choices),
+            "decision7_3": random.choice(weighted_choices),
+            "decision6_4": random.choice(weighted_choices),
+            "decision5_5": random.choice(weighted_choices),
+            "decision4_6": random.choice(weighted_choices),
+            "decision3_7": random.choice(weighted_choices),
+            "decision2_8": random.choice(weighted_choices),
+            "decision1_9": random.choice(weighted_choices),
+            "decision0_10": random.choice(weighted_choices)
         }
         yield pages.Assessment, valid_assessment
         yield pages.Questionnaire, valid_questionnaire

@@ -6,7 +6,6 @@ from otree.api import (
     BaseGroup,
     BasePlayer,
     Currency as c,
-    currency_range,
 )
 import random
 import json
@@ -45,7 +44,8 @@ class Subsession(BaseSubsession):
     modal0_10 = models.StringField()
 
     def creating_session(self):
-        treatment = self.session.config.get('treatment', 'original')
+        treatment = self.session.config.get('treatment', 'baseline')
+        print(treatment)
         for player in self.get_players():
             player.randomize_decision_order()
             player.set_treatment(treatment)
@@ -111,13 +111,13 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     treatment = models.StringField()
-    original = models.BooleanField(initial=False)
+    baseline = models.BooleanField(initial=False)
     always_remind = models.BooleanField(initial=False)
     never_remind = models.BooleanField(initial=False)
     first = models.BooleanField(initial=False)
     second = models.BooleanField(initial=False)
     no_incentives = models.BooleanField(initial=False)
-    incentives_only = models.BooleanField(initial=False)
+    no_conflict = models.BooleanField(initial=False)
 
     decision_order = models.StringField()
 
@@ -198,9 +198,9 @@ class Player(BasePlayer):
 
     def set_treatment(self, treatment):
         self.treatment = treatment
-
-        if treatment == "original":
-            self.original = True
+        print(self.treatment)
+        if treatment == "baseline":
+            self.baseline = True
         elif treatment == "always remind":
             self.always_remind = True
         elif treatment == "never remind":
@@ -211,8 +211,8 @@ class Player(BasePlayer):
         elif treatment == "second":
             self.no_incentives = True
             self.second = True
-        elif treatment == "incentives only":
-            self.incentives_only = True
+        elif treatment == "no conflict":
+            self.no_conflict = True
 
         self.selected_decision = random.choice(Constants.decision_list)
 

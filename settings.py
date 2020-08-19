@@ -13,7 +13,7 @@ SESSION_CONFIG_DEFAULTS = dict(
         keywords='bonus, study, research, decision making',
         title='Short Decision-Making Task',
         description='Make a total of six decisions taking less then 10 minutes.',
-        frame_height=700,
+        frame_height=500,
         template='global/mturk_template.html',
         minutes_allotted_per_assignment=20,
         expiration_hours=2 * 24,
@@ -34,12 +34,12 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 SESSION_CONFIGS = [
     dict(
-        name='kwtask_original',
+        name='kwtask_baseline',
         display_name="Krupka Weber Task / Baseline",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="original"
+        treatment="baseline"
     ),
     dict(
         name='kwtask_always',
@@ -74,12 +74,12 @@ SESSION_CONFIGS = [
         treatment="second"
     ),
     dict(
-        name='kwtask_incentives_only',
+        name='kwtask_no_conflict',
         display_name="Krupka Weber Task / No Conflict",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
-        treatment="incentives only"
+        treatment="no conflict"
     )
 ]
 
