@@ -86,7 +86,13 @@
             response selected by most other people in today's session. Otherwise you would receive only the
             {{ participation_fee }} participation fee.
         </p>
+    {% else %}
+        <p>
+            At the end of the study, you will receive your participation fee of {{ participation_fee }} via Amazon Mechanical Turk.
+        </p>
     {% endif %}
+    
+    {% formfield player.comprehension_incentives %}
 
     <div class="center">
         {% next_button %}

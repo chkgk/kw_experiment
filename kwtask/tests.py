@@ -19,11 +19,20 @@ class PlayerBot(Bot):
             'task_question': random.randint(0, 1),
             'task_incentives': random.randint(0, 2)
         }
+        
+        valid_comprehension = {
+            'task': {
+                'comprehension_task': 1 if self.player.no_conflict or self.player.second else 0
+            },
+            'incentives': {
+                'comprehension_incentives': 0 if self.player.first or self.player.second else 2
+            }
+        }
 
         yield Submission(pages.Instructions1, {'captcha': 'a'}, check_html=False)
-        yield pages.ExampleSituation
+        yield pages.ExampleSituation, valid_comprehension['task']
         yield pages.ExampleSituationCont
-        yield pages.FinalInstructions
+        yield pages.FinalInstructions, valid_comprehension['incentives']
 
         yield pages.Decisions, {
             "decision10_0": random.choice(weighted_choices),

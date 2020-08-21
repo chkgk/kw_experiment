@@ -24,7 +24,8 @@ class Instructions1(Page):
 
 
 class ExampleSituation(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['comprehension_task']
 
 
 class ExampleSituationCont(Page):
@@ -32,6 +33,9 @@ class ExampleSituationCont(Page):
 
 
 class FinalInstructions(Page):
+    form_model = 'player'
+    form_fields = ['comprehension_incentives']
+
     def vars_for_template(self) -> dict:
         return {
             'participation_fee': self.session.config['participation_fee']

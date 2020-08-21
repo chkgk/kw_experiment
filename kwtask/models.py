@@ -146,6 +146,19 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect()
     )
 
+    comprehension_task = models.IntegerField(
+        verbose_name="Which of the following two statements about your task is true?",
+        widget=widgets.RadioSelect()
+    )
+
+    comprehension_incentives = models.IntegerField(
+        verbose_name="Which of the following three statements about payments is true?",
+        widget=widgets.RadioSelect()
+    )
+
+    comprehension_task_errors = models.IntegerField(initial=0)
+    comprehension_incentives_errors = models.IntegerField(initial=0)
+
     age = models.IntegerField(verbose_name="How old are you?", max=120, doc="Age.")
     gender = models.StringField(choices=["female", "male", "other", "I prefer not to tell"],
                                 label="What is your gender?", doc="Gender.", widget=widgets.RadioSelectHorizontal)
@@ -181,6 +194,24 @@ class Player(BasePlayer):
         random.shuffle(choices)
         return choices
 
+    def comprehension_task_choices(self):
+        choices = [
+            (0, "I am asked to give appropriateness ratings based on my own, personal beliefs."),
+            (1, "I am asked to give appropriateness ratings based on what I think most people believe."),
+        ]
+        random.shuffle(choices)
+        return choices
+
+    def comprehension_task_error_message(self, value):
+        if self.no_conflict or self.second:
+            if value != 1:
+                self.comprehension_task_errors += 1
+                return "Incorrect. Please read the instructions again and correct your answer."
+        else:
+            if value != 0:
+                self.comprehension_task_errors += 1
+                return "Incorrect. Please read the instructions again and correct your answer."
+
     def task_incentives_choices(self):
         choices = [
             (0, "My payment for this study is independent of my responses."),
@@ -189,6 +220,19 @@ class Player(BasePlayer):
         ]
         random.shuffle(choices)
         return choices
+
+    def comprehension_incentives_choices(self):
+        return self.task_incentives_choices()
+
+    def comprehension_incentives_error_message(self, value):
+        if self.first or self.second:
+            if value != 0:
+                self.comprehension_incentives_errors += 1
+                return "Incorrect. Please read the instructions again and correct your answer."
+        else:
+            if value != 2:
+                self.comprehension_incentives_errors += 1
+                return "Incorrect. Please read the instructions again and correct your answer."
 
     def randomize_decision_order(self):
         decision_list = Constants.decision_list.copy()

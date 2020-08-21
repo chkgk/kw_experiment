@@ -59,56 +59,62 @@ MTURK_CONFIG_NO_BONUS = dict(
 SESSION_CONFIGS = [
     dict(
         name='kwtask_baseline',
-        display_name="Krupka Weber Task / Baseline",
+        display_name="KW2 / Baseline",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
         treatment="baseline",
+        comprehension=True,
         mturk_hit_settings=MTURK_CONFIG_BONUS
     ),
     dict(
         name='kwtask_always',
-        display_name="Krupka Weber Task / Always Remind",
+        display_name="KW2 / Always Remind",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
         treatment="always remind",
+        comprehension=True,
         mturk_hit_settings=MTURK_CONFIG_BONUS
     ),
     dict(
         name='kwtask_never',
-        display_name="Krupka Weber Task / Never Remind",
+        display_name="KW2 / Never Remind",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
         treatment="never remind",
+        comprehension=True,
         mturk_hit_settings=MTURK_CONFIG_BONUS
     ),
     dict(
         name='kwtask_first',
-        display_name="Krupka Weber Task / First Order Belief",
+        display_name="KW2 / First Order Belief",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
         treatment="first",
+        comprehension=True,
         mturk_hit_settings=MTURK_CONFIG_NO_BONUS
     ),
     dict(
         name='kwtask_second',
-        display_name="Krupka Weber Task / Second Order Belief",
+        display_name="KW2 / Second Order Belief",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
         treatment="second",
+        comprehension=True,
         mturk_hit_settings=MTURK_CONFIG_NO_BONUS
     ),
     dict(
         name='kwtask_no_conflict',
-        display_name="Krupka Weber Task / No Conflict",
+        display_name="KW2 / No Conflict",
         num_demo_participants=2,
         app_sequence=['kwtask'],
         participation_fee=0.75,
         treatment="no conflict",
+        comprehension=True,
         mturk_hit_settings=MTURK_CONFIG_BONUS
     )
 ]
