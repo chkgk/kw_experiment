@@ -252,7 +252,7 @@ class Player(BasePlayer):
             else:
                 self.understood_task = self.task_question == 1
         else:
-            self.understood_task = self.task_question == 1
+            self.understood_task = self.task_question == 0
             self.understood_incentives = self.task_incentives == 2
 
 
