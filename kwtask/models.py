@@ -45,7 +45,9 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         treatment = self.session.config.get('treatment', 'baseline')
+        comprehension = self.session.config.get('comprehension', False)
         for player in self.get_players():
+            player.comprehension_questions = comprehension
             player.randomize_decision_order()
             player.set_treatment(treatment)
 
@@ -117,6 +119,7 @@ class Player(BasePlayer):
     second = models.BooleanField(initial=False)
     no_incentives = models.BooleanField(initial=False)
     no_conflict = models.BooleanField(initial=False)
+    comprehension_questions = models.BooleanField(initial=False)
 
     decision_order = models.StringField()
 
